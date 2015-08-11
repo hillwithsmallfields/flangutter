@@ -1,6 +1,8 @@
 # flangutter
 
-FIXME: description
+Functional LANGuage program for creating UTTERances. 
+
+This is a driver program for natlangfun.
 
 ## Installation
 
@@ -10,7 +12,7 @@ Download from http://example.com/FIXME.
 
 FIXME: explanation
 
-    $ java -jar flangutter-0.1.0-standalone.jar [args]
+    $ lein run
 
 ## Options
 
@@ -30,7 +32,5 @@ FIXME: listing of options this app accepts.
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 John C. G. Sturdy
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
