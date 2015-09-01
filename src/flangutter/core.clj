@@ -117,15 +117,13 @@
                                   (list language-name "clj"))))))
 
 (defn read-vocabulary [vocab-file]
-  ;; TODO: I think clojure has a special syntax for a nested call like this
-  (let [raw-maps (csv-map.core/parse-csv 
-                  (slurp
-                   (io/file vocabulary-directory
-                            (clojure.string/join "."
-                                                 (list vocab-file "csv")))))]
-    raw-maps
-    ))
-
+  (->> (list vocab-file "csv")
+       (clojure.string/join ".")
+       (io/file vocabulary-directory)
+       (slurp)
+       (csv-map.core/parse-csv)
+       (into {} (map (fn [row]
+                       [(row "ENG") row])))))
 
 (defn -main
   "I don't do a whole lot ... yet."
