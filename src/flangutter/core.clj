@@ -29,8 +29,8 @@
   arrays consisting of the word in the language's script and a
   transliteration into Latin script).
 
-  If a name or name component will be read by Scheme as a symbol, it may
-  be given as a Scheme symbol.  Otherwise, it should be given as a
+  If a name or name component will be read by Clojure as a symbol, it may
+  be given as a Clojure symbol.  Otherwise, it should be given as a
   string.
 
   The language's ISO 639-3 code is given as @var{code}.
@@ -41,14 +41,19 @@
   that script, in their conventional sorting order for that language, as
   strings, with symbols that share a place in the sorting order grouped
   in square brackets in the same string."
-  [language-name own-name code scripts]
+  [name own-name code scripts]
   ;; todo: put language description parts into language's definition
-  )
-
-(defmacro template
-  "Define a template for a language construct, to be filled in with the given parts."
-  [template-name template-parameters & templated-parts]
-  ;; todo: put template onto language's templates list
+  `(let [language-actual-name# (if (list? name)
+                                (first name)
+                                name)
+         language-ns# (create-ns language-actual-name#)]
+     (intern language-ns# 'language-reference-name language-actual-name#)
+     (when (list? name)
+       (intern language-ns# 'language-family (rest name)))
+     (intern language-ns# 'language-own-name own-name)
+     (intern language-ns# 'language-iso-code code)
+     (intern language-ns# 'language-scripts scripts)
+     )
   )
 
 (defmacro template
