@@ -43,16 +43,17 @@
   in square brackets in the same string."
   [name own-name code scripts]
   ;; todo: put language description parts into language's definition
-  `(let [language-actual-name# (if (list? name)
-                                (first name)
-                                name)
+  `(let [language-actual-name# (if (list? ~name)
+                                (first ~name)
+                                ~name)
          language-ns# (create-ns language-actual-name#)]
      (intern language-ns# 'language-reference-name language-actual-name#)
-     (when (list? name)
-       (intern language-ns# 'language-family (rest name)))
-     (intern language-ns# 'language-own-name own-name)
-     (intern language-ns# 'language-iso-code code)
-     (intern language-ns# 'language-scripts scripts)
+     (when (list? ~name)
+       (intern language-ns# 'language-family (rest ~name)))
+     (intern language-ns# 'language-own-name ~own-name)
+     (intern language-ns# 'language-iso-code ~code)
+     (intern language-ns# 'language-scripts ~scripts)
+     (in-ns language-ns#)
      )
   )
 

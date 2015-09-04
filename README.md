@@ -18,7 +18,7 @@ FIXME: explanation
 
 FIXME: listing of options this app accepts.
 
-## Examples
+## Exampleso
 
 ...
 
